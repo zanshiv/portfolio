@@ -2,7 +2,7 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import { fileURLToPath } from 'node:url'
 
-const pages = ['projects', 'experience', 'skills', 'certifications']
+const pages = ['projects', 'experience', 'skills', 'certifications', 'achievements']
 
 export default defineConfig({
   plugins: [react()],
