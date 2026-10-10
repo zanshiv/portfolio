@@ -689,6 +689,7 @@ export default function App() {
           ] },
           { title: 'In school', icon: GraduationCap, items: [
             { title: 'President’s List', result: 'Academic recognition', dates: '2023–2026' },
+            { title: 'Dean’s List', result: 'Academic recognition', dates: '2023–2026' },
             { title: 'Full Academic Scholarship', result: '5 terms', dates: '2023–2025' },
           ] },
         ].map((group, index) => <div className="achievement-group" key={group.title} data-reveal style={{ '--reveal-delay': `${index * 180}ms` }}>
