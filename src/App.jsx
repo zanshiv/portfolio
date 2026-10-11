@@ -326,6 +326,10 @@ const projects = [
 
 ]
 
+projects.push({ number: '13', title: 'Flip', subtitle: 'A Light-Toggling Puzzle Game', summary: 'A grid puzzle where each move flips neighboring lights as players work to light up the entire board.', description: 'Developed Flip, a logic puzzle game that challenges players to turn on every light in a grid. Selecting a tile toggles its neighbors above, below, left, and right between on and off, making each move a balance between progress and undoing earlier choices. Players can choose from 3 × 3, 4 × 4, and 5 × 5 boards, track their moves against puzzle goals, and reset the board to try a different approach. The minimal black-and-white interface keeps the focus on recognizing patterns and planning the next move.', tags: ['Game Development', 'Logic Puzzles', 'Interactive Gameplay'], theme: 'flip' })
+
+projects.push({ number: '14', title: 'Memory Game', subtitle: 'A Programming-Themed Card Matching Game', summary: 'A Python and Tkinter memory game with programming-themed cards, customizable boards, and optional challenges.', description: 'Built a desktop memory game in Python using Tkinter, challenging players to uncover and match pairs of programming language and web technology icons. Players can choose 2x2, 4x4, 6x6, or 8x8 boards and enable optional timer, lives, and score features to customize the challenge. The interface tracks card flips and includes pause, resume, and restart controls, with victory and defeat dialogs showing the result and score when scoring is enabled. Light and dark modes offer a choice of appearance throughout the game.', tags: ['Python', 'Tkinter', 'Game Development'], theme: 'memory-game' })
+
 const usoScreens = [
   { name: 'Outfits', file: 'outfits.png', alt: 'USO home screen with personalized outfit recommendations' },
   { name: 'Wardrobe', file: 'wardrobe.png', alt: 'USO digital wardrobe with clothing categories and collection' },
@@ -498,7 +502,21 @@ const intruderDetectionScreens = [
     "alt": "Authorized user recognition and registered user list with face blurred"
   }
 ]
-const projectScreens = { "intruder-detection": intruderDetectionScreens, eldrow: eldrowScreens, "meteor-blaster": meteorBlasterScreens, "shuttle-reservation": shuttleReservationScreens, happytailz: happyTailzScreens, 'thesis-scheduler': thesisSchedulerScreens, cortex: cortexScreens, flora: floraScreens, uso: usoScreens, jeeps: jeepsScreens, ccis: ccisScreens, tenshi: tenshiScreens }
+const flipScreens = [
+  { name: '3 × 3 puzzle', file: '3x3.png', alt: 'Flip three by three light puzzle with move counter and goal tracking' },
+  { name: '3 × 3 gameplay', file: '3x3-gameplay.png', alt: 'Flip three by three board after one move' },
+  { name: '4 × 4 mode', file: '4x4.png', alt: 'Flip four by four light puzzle' },
+  { name: '5 × 5 mode', file: '5x5.png', alt: 'Flip five by five light puzzle with grid size and reset controls' },
+]
+const memoryGameScreens = [
+  { name: 'Game setup', file: 'setup.png', alt: 'Memory Game setup with board sizes and optional timer, lives, score, and dark mode' },
+  { name: 'Starting board', file: 'board.png', alt: 'Four by four memory board with hidden cards and gameplay counters' },
+  { name: 'Revealing cards', file: 'revealing.png', alt: 'Memory Game with two programming-themed cards revealed' },
+  { name: 'Matching pairs', file: 'matches.png', alt: 'Memory Game showing matched programming icons, elapsed time, lives, and flip count' },
+  { name: 'Victory', file: 'victory.png', alt: 'Memory Game victory dialog with final score' },
+  { name: 'Defeat', file: 'defeat.png', alt: 'Memory Game defeat dialog after running out of lives' },
+]
+const projectScreens = { 'memory-game': memoryGameScreens, flip: flipScreens, "intruder-detection": intruderDetectionScreens, eldrow: eldrowScreens, "meteor-blaster": meteorBlasterScreens, "shuttle-reservation": shuttleReservationScreens, happytailz: happyTailzScreens, 'thesis-scheduler': thesisSchedulerScreens, cortex: cortexScreens, flora: floraScreens, uso: usoScreens, jeeps: jeepsScreens, ccis: ccisScreens, tenshi: tenshiScreens }
 
 function ProjectDetails({ project, onClose }) {
   const dialogRef = useRef(null)
@@ -520,7 +538,7 @@ function ProjectDetails({ project, onClose }) {
     }
   }, [])
 
-  return <dialog ref={dialogRef} className={`project-dialog${['flora', 'cortex', 'ccis', 'tenshi', 'happytailz', 'eldrow', 'intruder-detection'].includes(project.theme) ? ` landscape-dialog ${project.theme}-dialog` : ''}`} aria-labelledby={`detail-title-${project.number}`} onCancel={onClose} onClick={event => { if (event.target === event.currentTarget) onClose() }} onKeyDown={event => {
+  return <dialog ref={dialogRef} className={`project-dialog${['flora', 'cortex', 'ccis', 'tenshi', 'happytailz', 'eldrow', 'intruder-detection', 'flip', 'memory-game'].includes(project.theme) ? ` landscape-dialog ${project.theme}-dialog` : ''}`} aria-labelledby={`detail-title-${project.number}`} onCancel={onClose} onClick={event => { if (event.target === event.currentTarget) onClose() }} onKeyDown={event => {
     if (!screens.length) return
     if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
       event.preventDefault()
@@ -582,6 +600,16 @@ function ProjectPreview({ project }) {
 export default function App() {
   const [currentPage, setCurrentPage] = useState(getCurrentPage)
   const [menuOpen, setMenuOpen] = useState(false)
+  const [theme, setTheme] = useState(() => document.documentElement.dataset.theme || 'light')
+  const toggleTheme = () => {
+    const next = theme === 'dark' ? 'light' : 'dark'
+    setTheme(next)
+    try { localStorage.setItem('portfolio-theme', next) } catch {}
+  }
+  useEffect(() => {
+    document.documentElement.dataset.theme = theme
+    document.querySelector('meta[name="theme-color"]')?.setAttribute('content', theme === 'dark' ? '#171717' : '#fafaf9')
+  }, [theme])
   const mainRef = useRef(null)
   const previousPage = useRef(currentPage)
   const closeMenu = () => setMenuOpen(false)
@@ -628,7 +656,10 @@ export default function App() {
       <nav className={menuOpen ? 'navigation open' : 'navigation'} id="navigation" aria-label="Primary navigation">
         {pages.map(page => <a key={page} href={`/${page.toLowerCase()}/`} aria-current={currentPage === page.toLowerCase() ? 'page' : undefined} onClick={closeMenu}>{page}</a>)}
       </nav>
-      <button className="menu-button" aria-label={menuOpen ? 'Close navigation' : 'Open navigation'} aria-expanded={menuOpen} aria-controls="navigation" onClick={() => setMenuOpen(!menuOpen)} onKeyDown={event => { if (event.key === 'Escape') closeMenu() }}>{menuOpen ? <X /> : <Menu />}</button>
+      <div className="header-controls">
+        <button className="theme-toggle" type="button" aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'} onClick={toggleTheme}><span className="theme-symbol" aria-hidden="true" /></button>
+        <button className="menu-button" aria-label={menuOpen ? 'Close navigation' : 'Open navigation'} aria-expanded={menuOpen} aria-controls="navigation" onClick={() => setMenuOpen(!menuOpen)} onKeyDown={event => { if (event.key === 'Escape') closeMenu() }}>{menuOpen ? <X /> : <Menu />}</button>
+      </div>
     </header>
     <main key={currentPage} ref={mainRef} tabIndex={-1} id="main" className={currentPage === 'home' ? 'home-page' : 'inner-page'}>
       {currentPage === 'home' && <section className="hero" aria-labelledby="hero-title">
@@ -683,7 +714,7 @@ export default function App() {
         <div className="achievement-groups">{[
           { title: 'Outside school', icon: Trophy, items: [
             { title: 'UPLB Code Wars', result: '2nd Place', dates: '2025', images: [{ file: 'uplb-enhanced.png', label: 'Certificate' }] },
-            { title: 'CodeChum National Programming Competition', result: '5th Place ? Group stages 3 and 4', dates: '2024, 2025', images: [{ file: 'codechum-2024.png', label: '2024 certificate' }, { file: 'codechum-2025.png', label: '2025 certificate' }] },
+            { title: 'CodeChum National Programming Competition', result: '5th Place · Group stages 3 and 4', dates: '2024, 2025', images: [{ file: 'codechum-2024.png', label: '2024 certificate' }, { file: 'codechum-2025.png', label: '2025 certificate' }] },
             { title: 'ASEAN AI Hackathon', result: 'Qualifier', dates: '2026' },
             { title: 'InterCICSkwela Batang Techno Hackathon', result: '5th Place', dates: '2026', images: [{ file: 'batang-techno-personal.png', label: 'Individual certificate' }, { file: 'batang-techno-team.png', label: 'Team certificate' }] },
           ] },

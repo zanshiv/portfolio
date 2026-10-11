@@ -7,6 +7,14 @@
     <meta name="theme-color" content="#e9e1ce" />
     <meta name="description" content="Gab's full-stack, machine-learning, and data portfolio." />
     <title>Experience | Gab</title>
+    <script>
+      (() => {
+        let saved
+        try { saved = localStorage.getItem('portfolio-theme') } catch {}
+        const theme = saved === 'light' || saved === 'dark' ? saved : 'light'
+        document.documentElement.dataset.theme = theme
+      })()
+    </script>
   </head>
   <body>
     <div id="root"></div>
