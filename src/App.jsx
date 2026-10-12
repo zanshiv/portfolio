@@ -162,7 +162,7 @@ const eventGalleries = {
 const experience = [
   {
     organization: 'AMS Environmental Management Corporation',
-    role: 'Software Developer', location: 'Santa Rosa, Laguna', dates: 'Jun 2026 – Dec 2026',
+    role: 'Software Engineer', location: 'Santa Rosa, Laguna', dates: 'Jun 2026 – Dec 2026',
     details: [
       'Engineering a centralized HRIS for AMS and Milestone, connecting applicant intake, hiring, and deployment across two companies through self-service applications and unified personnel records to eliminate duplicate applicant encoding.',
       'Architecting a Django/Python and PostgreSQL platform with company- and client-scoped permissions and three-tier approval workflows to govern sensitive records, employee data changes, and separations.',
@@ -314,7 +314,7 @@ const projects = [
   { number: '06', title: 'Tenshi Management System', subtitle: 'A Database-Driven Business Operations System', summary: 'A MySQL-backed system connecting client records, orders, and financial documentation.', description: 'Developed a business management system backed by a MySQL database to organize client records, product and service quotations, purchase orders, and job orders. Structured related data across account managers, project heads, and finance personnel to support coordinated workflows. The system includes job order approval tracking, delivery and completion records, invoice management, and collection receipts, connecting customer transactions with project documentation and financial records.', tags: ['MySQL', 'Business Management', 'Database Design'], theme: 'tenshi' },
   { number: '07', title: 'Thesis Scheduler App', subtitle: 'A Unified Thesis Defense Management Platform', summary: 'An Android app for coordinating thesis defense schedules, groups, and updates.', description: 'Developed an Android thesis defense management app that brings students, advisers, and professors into one scheduling platform. Addresses the confusion of manual scheduling, room and panelist availability conflicts, and scattered updates across student groups. Professors can create and manage defense schedules and view their advisee groups, while students can check their schedules and recent notifications. Connected the app to a backend for managing users, groups, schedules, rooms, professors, and notifications, with reusable interface components, a dedicated layer for screen state and user actions, and navigation between screens.', tags: ['Android Development', 'Scheduling', 'Backend Integration'], theme: 'thesis-scheduler' },
 
-  { number: '08', title: 'HappyTailz', subtitle: 'Pet Adoption Website · UI/UX Design', summary: 'A website design that helps people discover pets available for adoption.', description: 'Designed the interface and user experience for HappyTailz, a pet adoption website concept. Created pet browsing screens with filters for location, breed, age, size, and gender to help prospective adopters explore available pets. The designs also include a home page highlighting shelter support and medical care, community blogs for adoption stories and pet care, an organized navigation menu, and account access screens. Used an olive and neutral palette with prominent pet photography throughout the UI/UX design project.', tags: ['UI/UX Design', 'Web Design', 'Pet Adoption'], theme: 'happytailz' },
+  { number: '08', title: 'Happy Tails', subtitle: 'Pet Adoption Website · UI/UX Design', summary: 'A website design that helps people discover pets available for adoption.', description: 'Designed the interface and user experience for Happy Tails, a pet adoption website concept. Created pet browsing screens with filters for location, breed, age, size, and gender to help prospective adopters explore available pets. The designs also include a home page highlighting shelter support and medical care, community blogs for adoption stories and pet care, an organized navigation menu, and account access screens. Used an olive and neutral palette with prominent pet photography throughout the UI/UX design project.', tags: ['UI/UX Design', 'Web Design', 'Pet Adoption'], theme: 'happytailz' },
 
   { number: '09', title: 'Campus Shuttle Reservation', subtitle: 'Shuttle Reservation App · UI/UX Design', summary: 'A mobile app design for easier campus shuttle booking and access to trip information.', description: 'Created the UI/UX for a campus shuttle reservation application as part of a project management course at Mapúa Malayan Colleges Laguna. Designed the proposed application to make shuttle access more convenient and reservation steps easier to follow. The screens cover student login, email verification, a dashboard with ongoing trip information and a route map, and a booking flow for selecting travel direction, pickup location, and departure time. The concept brings reservations and shuttle information together in a simple mobile interface, with a restrained monochrome palette and clear navigation.', tags: ['UI/UX Design', 'Project Management', 'Mobile App Design'], theme: 'shuttle-reservation' },
 
@@ -381,7 +381,7 @@ const happyTailzScreens = [
   {
     "name": "Home page",
     "file": "home.png",
-    "alt": "HappyTailz home page design featuring shelter donations and pet medical care"
+    "alt": "Happy Tails home page design featuring shelter donations and pet medical care"
   },
   {
     "name": "Pets for adoption",
@@ -401,7 +401,7 @@ const happyTailzScreens = [
   {
     "name": "Account access",
     "file": "login.png",
-    "alt": "HappyTailz login and signup entry design with pet photography and olive accents"
+    "alt": "Happy Tails login and signup entry design with pet photography and olive accents"
   }
 ]
 const shuttleReservationScreens = [
@@ -715,7 +715,7 @@ export default function App() {
           { title: 'Outside school', icon: Trophy, items: [
             { title: 'UPLB Code Wars', result: '2nd Place', dates: '2025', images: [{ file: 'uplb-enhanced.png', label: 'Certificate' }] },
             { title: 'CodeChum National Programming Competition', result: '5th Place · Group stages 3 and 4', dates: '2024, 2025', images: [{ file: 'codechum-2024.png', label: '2024 certificate' }, { file: 'codechum-2025.png', label: '2025 certificate' }] },
-            { title: 'ASEAN AI Hackathon', result: 'Qualifier', dates: '2026' },
+            { title: 'ASEAN AI Hackathon', result: 'Qualifier', dates: '2026', images: [{ file: 'asean-ai.png', label: 'Certificate of participation' }] },
             { title: 'InterCICSkwela Batang Techno Hackathon', result: '5th Place', dates: '2026', images: [{ file: 'batang-techno-personal.png', label: 'Individual certificate' }, { file: 'batang-techno-team.png', label: 'Team certificate' }] },
           ] },
           { title: 'In school', icon: GraduationCap, items: [
@@ -748,7 +748,7 @@ export default function App() {
           { label: 'GitHub', href: 'https://github.com/zanshiv' },
         ].map(({ label, href }) => <a key={label} href={href} target="_blank" rel="noopener noreferrer">{label}</a>)}
       </nav>
-      <a className="footer-resume" href="/documents/Resume-Tanabe.pdf" download="Resume - Tanabe.pdf">Download résumé</a>
+      <a className="footer-resume" href="/documents/Resume%20-%20Tanabe.pdf" download="Resume - Tanabe.pdf">Download résumé</a>
     </footer>
   </div>
 }
