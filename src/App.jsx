@@ -1,6 +1,7 @@
 import { ChevronLeft, ChevronRight, Menu, X, Code2, Database, BrainCircuit, Layers, Trophy, GraduationCap } from 'lucide-react'
 import { useEffect, useRef, useState } from 'react'
 import { setupScrollReveal } from './scrollReveal'
+import { Analytics } from '@vercel/analytics/react'
 
 const pages = ['Projects', 'Experience', 'Skills', 'Certifications', 'Achievements']
 const getCurrentPage = () => {
@@ -750,5 +751,6 @@ export default function App() {
       </nav>
       <a className="footer-resume" href="/documents/Resume%20-%20Tanabe.pdf" download="Resume - Tanabe.pdf">Download résumé</a>
     </footer>
+    <Analytics />
   </div>
 }
